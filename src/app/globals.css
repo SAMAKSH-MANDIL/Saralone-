@@ -1,26 +1,184 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Tailwind v4: opt into class-based dark mode via custom variant. */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: light;
+
+  --bg: 248 250 252; /* slate-50 */
+  --card: 255 255 255;
+  --fg: 15 23 42; /* slate-900 */
+  --muted: 100 116 139; /* slate-500 */
+  --border: 226 232 240; /* slate-200 */
+
+  --brand-1: 99 102 241; /* indigo-500 */
+  --brand-2: 168 85 247; /* purple-500 */
+  --brand-3: 14 165 233; /* sky-500 */
+
+  --shadow: 15 23 42;
+  --ring: 99 102 241;
+
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --bg: 2 6 23; /* slate-950 */
+  --card: 15 23 42; /* slate-900 */
+  --fg: 241 245 249; /* slate-100 */
+  --muted: 148 163 184; /* slate-400 */
+  --border: 30 41 59; /* slate-800 */
+  --shadow: 0 0 0;
+  --ring: 129 140 248; /* indigo-400 */
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
+    Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+::selection {
+  background: rgba(var(--brand-1), 0.22);
+}
+
+@layer utilities {
+  .focus-ring {
+    @apply outline-none focus-visible:ring-4 focus-visible:ring-[rgba(var(--ring),0.25)];
+  }
+
+  .container-px {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(226, 232, 240, 0.7);
+    backdrop-filter: blur(12px);
+  }
+
+  .dark .glass {
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(30, 41, 59, 0.9);
+  }
+
+  .shadow-soft {
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+  }
+
+  .ring-brand {
+    box-shadow: 0 0 0 4px rgba(var(--ring), 0.18);
+  }
+
+  .mesh {
+    background:
+      radial-gradient(1200px 600px at 20% 10%, rgba(var(--brand-2), 0.18), transparent 55%),
+      radial-gradient(1000px 500px at 90% 20%, rgba(var(--brand-3), 0.18), transparent 55%),
+      radial-gradient(900px 500px at 40% 100%, rgba(var(--brand-1), 0.14), transparent 60%);
+  }
+
+  .blob {
+    filter: blur(34px);
+    opacity: 0.55;
+    transform: translateZ(0);
+  }
+
+  .gradient-border {
+    position: relative;
+    isolation: isolate;
+    border-radius: var(--radius-lg);
+  }
+
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      120deg,
+      rgba(var(--brand-3), 0.65),
+      rgba(var(--brand-1), 0.75),
+      rgba(var(--brand-2), 0.65)
+    );
+    z-index: -1;
+    opacity: 0.85;
+  }
+
+  .gradient-border > * {
+    border-radius: calc(var(--radius-lg) - 1px);
+  }
+
+  @keyframes floaty {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-40%);
+      opacity: 0.0;
+    }
+    20% {
+      opacity: 0.35;
+    }
+    100% {
+      transform: translateX(140%);
+      opacity: 0.0;
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-floaty {
+    animation: floaty 7s ease-in-out infinite;
+  }
+
+  .animate-marquee {
+    animation: marquee 26s linear infinite;
+  }
+
+  .animate-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.45),
+      transparent 70%
+    );
+    transform: translateX(-40%);
+    animation: shimmer 2.2s ease-in-out infinite;
+    pointer-events: none;
+  }
 }
