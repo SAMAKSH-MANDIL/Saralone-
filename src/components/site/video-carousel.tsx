@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { Play } from "lucide-react";
 import { cn } from "@/lib/cn";
 import type { DemoVideo } from "@/lib/demo-data";
 
@@ -12,101 +12,52 @@ export function VideoCarousel({
   items: DemoVideo[];
   className?: string;
 }) {
-  const scrollerRef = React.useRef<HTMLDivElement | null>(null);
+  const loopItems = React.useMemo(() => [...items, ...items], [items]);
 
-  const scrollByCards = (dir: -1 | 1) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-video-card]");
-    const step = (card?.offsetWidth ?? 420) + 16;
-    el.scrollBy({ left: step * dir, behavior: "smooth" });
+  const getBadgeText = (video: DemoVideo) => {
+    if (video.tags?.[0]) return video.tags[0];
+    return video.title.split(" ").slice(0, 3).join(" ");
   };
 
   return (
     <div className={cn("grid gap-4", className)}>
-      <div className="flex items-end justify-between gap-3">
-        <div>
-          <div className="text-sm font-semibold text-slate-900 dark:text-white">
-            Demo walkthroughs
-          </div>
-          <div className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-            Short examples of systems we build (placeholder embeds).
-          </div>
-        </div>
-        <div className="hidden items-center gap-2 sm:flex">
-          <button
-            type="button"
-            onClick={() => scrollByCards(-1)}
-            className="focus-ring grid size-10 place-items-center rounded-full ring-1 ring-slate-200/70 bg-white/70 backdrop-blur transition hover:bg-white dark:bg-slate-900/50 dark:ring-slate-800"
-            aria-label="Previous videos"
-          >
-            <ChevronLeft className="size-4" />
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollByCards(1)}
-            className="focus-ring grid size-10 place-items-center rounded-full ring-1 ring-slate-200/70 bg-white/70 backdrop-blur transition hover:bg-white dark:bg-slate-900/50 dark:ring-slate-800"
-            aria-label="Next videos"
-          >
-            <ChevronRight className="size-4" />
-          </button>
-        </div>
-      </div>
-
-      <div
-        ref={scrollerRef}
-        className={cn(
-          "flex gap-4 overflow-x-auto pb-2",
-          "[scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
-          "scroll-px-4 sm:scroll-px-6 lg:scroll-px-8",
-        )}
-      >
-        {items.map((v) => (
+      <div className="overflow-hidden pb-2">
+        <div className="flex w-max gap-4 [animation:video-marquee_24s_linear_infinite] will-change-transform">
+        {loopItems.map((v, idx) => (
           <div
-            key={v.title}
+            key={`${v.title}-${idx}`}
             data-video-card
-            className="w-[86%] shrink-0 sm:w-[520px]"
+            className="w-[290px] shrink-0 sm:w-[330px]"
           >
-            <div className="gradient-border">
-              <div className="glass shadow-soft overflow-hidden rounded-[var(--radius-lg)]">
-                <div className="relative">
-                  <div className="aspect-video w-full bg-slate-900/5 dark:bg-white/5">
-                    <iframe
-                      className="h-full w-full"
-                      src={v.embedUrl}
-                      title={v.title}
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  </div>
-                  <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200/70 backdrop-blur dark:bg-slate-900/50 dark:text-slate-200 dark:ring-slate-800">
-                    <Play className="size-3.5 text-indigo-600 dark:text-indigo-300" />
-                    Demo
+            <div className="overflow-hidden rounded-2xl ring-1 ring-black/10 shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
+              <div className="relative">
+                <div className="aspect-[4/5] w-full bg-slate-900/5 dark:bg-white/5">
+                  <iframe
+                    className="h-full w-full"
+                    src={v.embedUrl}
+                    title={v.title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/70" />
+                <div className="pointer-events-none absolute left-3 top-3 text-sm font-semibold text-white drop-shadow">
+                  {getBadgeText(v)}
+                </div>
+                <div className="pointer-events-none absolute inset-0 grid place-items-center">
+                  <div className="grid size-14 place-items-center rounded-full bg-white/95 text-black shadow-lg">
+                    <Play className="ml-0.5 size-7 fill-current" />
                   </div>
                 </div>
-
-                <div className="p-5">
-                  <div className="text-base font-semibold text-slate-900 dark:text-white">
+                <div className="pointer-events-none absolute bottom-3 left-3 right-3">
+                  <div className="line-clamp-2 text-[14px] font-semibold leading-5 text-white drop-shadow">
                     {v.title}
                   </div>
                   {v.subtitle ? (
-                    <div className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                    <div className="mt-1 line-clamp-2 text-[12px] leading-4 text-white/90">
                       {v.subtitle}
-                    </div>
-                  ) : null}
-
-                  {v.tags?.length ? (
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {v.tags.slice(0, 4).map((t) => (
-                        <span
-                          key={t}
-                          className="inline-flex items-center rounded-full bg-slate-900/5 px-3 py-1 text-xs font-semibold text-slate-700 dark:bg-white/10 dark:text-slate-200"
-                        >
-                          {t}
-                        </span>
-                      ))}
                     </div>
                   ) : null}
                 </div>
@@ -114,11 +65,18 @@ export function VideoCarousel({
             </div>
           </div>
         ))}
+        </div>
       </div>
-
-      <div className="text-xs text-slate-500 dark:text-slate-300">
-        Tip: swipe horizontally on mobile.
-      </div>
+      <style jsx>{`
+        @keyframes video-marquee {
+          from {
+            transform: translate3d(0, 0, 0);
+          }
+          to {
+            transform: translate3d(calc(-50% - 0.5rem), 0, 0);
+          }
+        }
+      `}</style>
     </div>
   );
 }
