@@ -20,13 +20,17 @@ export async function POST(request: Request) {
       submittedAt: String(body.submittedAt || "").trim(),
     };
 
-    await fetch(APPS_SCRIPT_URL, {
+    const upstreamResponse = await fetch(APPS_SCRIPT_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
     });
+
+    if (!upstreamResponse.ok) {
+      throw new Error(`Apps Script request failed (${upstreamResponse.status}).`);
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

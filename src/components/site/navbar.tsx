@@ -154,6 +154,13 @@ export function Navbar() {
                 </div>
 
                 <div className="mt-3 grid gap-2">
+                  <Button
+                    href="/contact"
+                    className="animate-shimmer relative w-full justify-center overflow-hidden"
+                    onClick={() => setOpen(false)}
+                  >
+                    Book Free Call <ArrowRight className="size-4" />
+                  </Button>
                   <button
                     type="button"
                     onClick={() => setOpen(false)}

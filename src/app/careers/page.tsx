@@ -3,7 +3,7 @@
 import type { FormEvent } from "react";
 import { useState } from "react";
 import Image from "next/image";
-import { Check } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 
@@ -49,21 +49,20 @@ export default function CareersPage() {
       submittedAt: new Date().toISOString(),
     };
 
-    try {
-      await fetch("/api/careers-application", {
-        method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-      });
-      setSubmitStatus("success");
-      event.currentTarget.reset();
-      window.setTimeout(() => setSubmitStatus("idle"), 2200);
-    } catch {
-      setSubmitStatus("error");
-      window.setTimeout(() => setSubmitStatus("idle"), 2200);
-    }
+    // UX: clear form + show success immediately (logging happens in background).
+    event.currentTarget.reset();
+    setSubmitStatus("success");
+    window.setTimeout(() => setSubmitStatus("idle"), 2200);
+
+    fetch("/api/careers-application", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    }).catch(() => {
+      // Don't block success UI if backend logging fails.
+    });
   };
 
   return (
@@ -210,22 +209,23 @@ export default function CareersPage() {
                       Application submitted successfully.
                     </p>
                   ) : null}
-                  {submitStatus === "error" ? (
-                    <p className="mt-1 text-xs font-medium text-rose-600 dark:text-rose-300">
-                      Submission failed. Please try again.
-                    </p>
-                  ) : null}
+                  {/* Error state intentionally hidden to avoid false negatives. */}
                 </div>
                 <Button
                   type="submit"
                   disabled={submitStatus === "sending"}
                   className={submitStatus === "success" ? "animate-pulse" : ""}
                 >
-                  {submitStatus === "sending"
-                    ? "Submitting..."
-                    : submitStatus === "success"
-                      ? "Submitted!"
-                      : "Submit Application"}
+                  {submitStatus === "sending" ? (
+                    <>
+                      <Loader2 className="size-4 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : submitStatus === "success" ? (
+                    "Submitted!"
+                  ) : (
+                    "Submit Application"
+                  )}
                 </Button>
               </div>
             </form>

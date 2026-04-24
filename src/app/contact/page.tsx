@@ -1,13 +1,20 @@
 "use client";
 
 import type { FormEvent } from "react";
+import { useState } from "react";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 export default function ContactPage() {
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmitStatus("sending");
 
     const formData = new FormData(event.currentTarget);
     const fullName = String(formData.get("fullName") ?? "").trim();
@@ -40,6 +47,11 @@ export default function ContactPage() {
 
     const whatsappUrl = `https://wa.me/919403892801?text=${encodeURIComponent(whatsappText)}`;
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+    // Clear immediately after submit (WhatsApp logging continues in background).
+    event.currentTarget.reset();
+    setSubmitStatus("success");
+    window.setTimeout(() => setSubmitStatus("idle"), 2200);
 
     fetch(appsScriptUrl, {
       method: "POST",
@@ -135,7 +147,31 @@ export default function ContactPage() {
                 />
               </div>
               <div className="pt-1">
-                <Button type="submit">Submit</Button>
+                <div className="flex flex-col gap-2">
+                  <Button type="submit" disabled={submitStatus === "sending"}>
+                    {submitStatus === "sending" ? (
+                      <>
+                        <Loader2 className="size-4 animate-spin" />
+                        Submitting...
+                      </>
+                    ) : submitStatus === "success" ? (
+                      "Submitted!"
+                    ) : (
+                      "Submit"
+                    )}
+                  </Button>
+
+                  {submitStatus === "success" ? (
+                    <p className="animate-pulse text-xs font-medium text-emerald-600 dark:text-emerald-300">
+                      Submitted successfully.
+                    </p>
+                  ) : null}
+                  {submitStatus === "error" ? (
+                    <p className="text-xs font-medium text-rose-600 dark:text-rose-300">
+                      Submission failed. Please try again.
+                    </p>
+                  ) : null}
+                </div>
               </div>
             </form>
           </div>
