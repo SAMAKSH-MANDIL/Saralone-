@@ -335,7 +335,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="mx-auto mt-10 max-w-6xl overflow-hidden rounded-3xl bg-[#f5f1ff] p-4 sm:p-6">
+        <div className="mx-auto mt-10 max-w-6xl overflow-hidden rounded-3xl bg-[#f5f1ff] p-4 dark:bg-slate-900/40 dark:ring-1 dark:ring-slate-800 sm:p-6">
           {(() => {
             const tools = [
               { label: "Meta", logoSrc: "/metaads.png" },
@@ -353,7 +353,7 @@ export default function Home() {
                 {loop.map((tool, idx) => (
                   <div
                     key={`${tool.label}-${idx}`}
-                    className="flex h-[140px] w-[190px] shrink-0 flex-col items-center justify-center rounded-2xl bg-white px-4 py-5 shadow-[0_6px_20px_rgba(99,102,241,0.08)] ring-1 ring-[#e9e3ff] sm:h-[165px] sm:w-[220px] sm:py-6"
+                    className="flex h-[140px] w-[190px] shrink-0 flex-col items-center justify-center rounded-2xl bg-white px-4 py-5 shadow-[0_6px_20px_rgba(99,102,241,0.08)] ring-1 ring-[#e9e3ff] dark:bg-slate-950/50 dark:shadow-none dark:ring-slate-800 sm:h-[165px] sm:w-[220px] sm:py-6"
                   >
                     <img
                       src={tool.logoSrc}
@@ -361,7 +361,7 @@ export default function Home() {
                       loading="lazy"
                       className="h-12 w-auto max-w-[140px] object-contain sm:h-14 sm:max-w-[150px]"
                     />
-                    <div className="mt-4 text-center text-xl font-semibold leading-none tracking-tight text-[#201547] sm:mt-5 sm:text-2xl">
+                    <div className="mt-4 text-center text-xl font-semibold leading-none tracking-tight text-slate-900 dark:text-white sm:mt-5 sm:text-2xl">
                       {tool.label}
                     </div>
                   </div>

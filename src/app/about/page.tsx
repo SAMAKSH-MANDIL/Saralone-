@@ -23,7 +23,7 @@ export default function AboutPage() {
               align="left"
             />
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button href="https://forms.gle/wZGPB8wFovcj2xgr7">
+              <Button href="/contact">
                 Book a Consultation
               </Button>
               <Button variant="secondary" href="/solutions">
@@ -143,7 +143,7 @@ export default function AboutPage() {
               ))}
             </ul>
             <div className="mt-6">
-              <Button href="https://forms.gle/wZGPB8wFovcj2xgr7">
+              <Button href="/contact">
                 Book a Consultation
               </Button>
             </div>
@@ -214,7 +214,7 @@ export default function AboutPage() {
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href="/contact">Contact Us</Button>
-              <Button variant="secondary" href="https://forms.gle/wZGPB8wFovcj2xgr7">
+              <Button variant="secondary" href="/contact">
                 Book a Consultation
               </Button>
             </div>

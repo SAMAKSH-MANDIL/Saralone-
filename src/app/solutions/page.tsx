@@ -190,7 +190,7 @@ export default function SolutionsPage() {
               solution for your growth.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Button href="https://forms.gle/wZGPB8wFovcj2xgr7">Book a Call</Button>
+              <Button href="/contact">Book a Call</Button>
               <Button variant="secondary" href="/contact">
                 Get a Proposal
               </Button>
@@ -202,7 +202,7 @@ export default function SolutionsPage() {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 sm:flex-row">
-          <Button href="https://forms.gle/wZGPB8wFovcj2xgr7">Book a Consultation</Button>
+          <Button href="/contact">Book a Consultation</Button>
           <Button variant="secondary" href="/services">
             Explore Services
           </Button>

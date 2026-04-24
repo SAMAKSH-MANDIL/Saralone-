@@ -6,7 +6,7 @@ import { Navbar } from "@/components/site/navbar";
 import { Footer } from "@/components/site/footer";
 import { ScrollProgress } from "@/components/site/scroll-progress";
 import { CursorGlow } from "@/components/site/cursor-glow";
-import { WhatsAppFab } from "@/components/site/whatsapp-fab";
+import { QuickActionsFab } from "@/components/site/quick-actions-fab";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -47,7 +47,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
-          <WhatsAppFab />
+          <QuickActionsFab />
         </ThemeProvider>
       </body>
     </html>

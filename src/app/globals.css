@@ -186,7 +186,7 @@ body {
 
   @media (min-width: 640px) {
     .animate-tools-marquee {
-      --tools-marquee-duration: 6s;
+      --tools-marquee-duration: 12s;
     }
   }
 
