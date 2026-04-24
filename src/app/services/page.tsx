@@ -17,7 +17,6 @@ export default function ServicesPage() {
       <div className="pointer-events-none absolute inset-0 mesh" />
       <Section className="pt-16 pb-24">
         <SectionHeading
-          eyebrow="Services"
           title="High-impact systems built for conversion"
           subtitle="Pick what you need—or we’ll recommend the best stack after a quick call."
           align="left"

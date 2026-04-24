@@ -52,7 +52,6 @@ export default function CaseStudiesPage() {
 
       <Section className="pt-16 pb-24">
         <SectionHeading
-          eyebrow="Case Studies"
           title="Real outcomes from clean systems"
           subtitle="These are demo case studies to expand the site structure. Replace with real client stories anytime."
           align="left"

@@ -33,7 +33,6 @@ export default function ResourcesPage() {
 
       <Section className="pt-16 pb-24">
         <SectionHeading
-          eyebrow="Resources"
           title="Guides, templates, and checklists"
           subtitle="Demo content to increase site length. Replace with real posts whenever you’re ready."
           align="left"

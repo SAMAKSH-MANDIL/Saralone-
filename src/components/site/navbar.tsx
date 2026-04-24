@@ -12,14 +12,9 @@ import { ThemeToggle } from "@/components/site/theme-toggle";
 
 const nav = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/resources", label: "Resources" },
   { href: "/about", label: "About" },
   { href: "/careers", label: "Careers" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -95,7 +90,7 @@ export function Navbar() {
             </button>
             <Button
               href="/contact"
-              className="animate-shimmer relative overflow-hidden"
+              className="animate-shimmer relative hidden overflow-hidden md:inline-flex"
             >
               Book Free Call <ArrowRight className="size-4" />
             </Button>
@@ -159,9 +154,6 @@ export function Navbar() {
                 </div>
 
                 <div className="mt-3 grid gap-2">
-                  <Button href="/contact" className="animate-shimmer relative overflow-hidden">
-                    Book Free Call <ArrowRight className="size-4" />
-                  </Button>
                   <button
                     type="button"
                     onClick={() => setOpen(false)}

@@ -61,7 +61,6 @@ export default function PricingPage() {
 
       <Section className="pt-16 pb-24">
         <SectionHeading
-          eyebrow="Pricing"
           title="Simple packages. Clear outcomes."
           subtitle="Pick a starting point and we tailor the build after a quick audit."
           align="left"

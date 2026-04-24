@@ -64,7 +64,7 @@ export default function Home() {
               </Button>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className="hidden gap-3 sm:grid sm:grid-cols-3">
               {[
                 { icon: CheckCircle2, title: "Fast delivery", desc: "2–6 week builds" },
                 { icon: ShieldCheck, title: "Reliable", desc: "Secure + scalable" },
@@ -84,7 +84,7 @@ export default function Home() {
           </div>
 
           {/* Mock dashboard */}
-          <div className="relative">
+          <div className="relative hidden lg:block">
             <div className="gradient-border">
               <div className="glass shadow-soft relative overflow-hidden rounded-[var(--radius-lg)] p-5">
                 <div className="flex items-center justify-between">
@@ -336,8 +336,11 @@ export default function Home() {
         </div>
 
         <div className="mx-auto mt-10 max-w-6xl overflow-hidden rounded-3xl bg-[#f5f1ff] p-4 sm:p-6">
-          <div className="flex w-[200%] items-stretch gap-4 animate-marquee">
+          <div className="flex w-[200%] items-stretch gap-4 animate-marquee [animation-duration:8s] sm:[animation-duration:26s]">
             {[
+              { label: "Meta", logoSrc: "/meta.png" },
+              { label: "Google My Business", logoSrc: "/googlemybusniess.png" },
+              { label: "Google", logoSrc: "/google.png" },
               { label: "Zoho", logoSrc: "/zoho.png" },
               { label: "Outplay", logoSrc: "/outplay.png" },
               { label: "Odoo", logoSrc: "/odoo.png" },
@@ -345,6 +348,9 @@ export default function Home() {
               { label: "n8n", logoSrc: "/n8n.png" },
             ]
               .concat([
+                { label: "Meta", logoSrc: "/meta.png" },
+                { label: "Google My Business", logoSrc: "/googlemybusniess.png" },
+                { label: "Google", logoSrc: "/google.png" },
                 { label: "Zoho", logoSrc: "/zoho.png" },
                 { label: "Outplay", logoSrc: "/outplay.png" },
                 { label: "Odoo", logoSrc: "/odoo.png" },
@@ -371,67 +377,45 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* LOGOS */}
-      <Section className="pt-14">
-        <SectionHeading
-          eyebrow="Trusted"
-          title="Trusted by Business Owners from Various Industries"
-          subtitle=""
-        />
-        <div className="mt-8">
-          <LogoCloud items={demoLogos} />
-        </div>
-      </Section>
+      {/* PROCESS (hidden on mobile) */}
+      <div className="hidden md:block">
+        <Section className="pt-20">
+          <SectionHeading
+            title="A simple process that ships fast"
+            subtitle="Clarity, speed, and iteration—without chaos."
+          />
 
-      {/* DEMO VIDEOS */}
-      <Section className="pt-20">
-        <SectionHeading
-          eyebrow="Demos"
-          title="See what the systems look like"
-          subtitle="Short walkthroughs of lead flows, dashboards, and automations (demo embeds)."
-        />
-        <div className="mt-10">
-          <VideoCarousel items={demoVideos} />
-        </div>
-      </Section>
-
-      {/* PROCESS */}
-      <Section className="pt-20">
-        <SectionHeading
-          eyebrow="Process"
-          title="A simple process that ships fast"
-          subtitle="Clarity, speed, and iteration—without chaos."
-        />
-
-        <div className="mt-10 grid gap-5 lg:grid-cols-4">
-          {[
-            { title: "Understand", icon: Sparkles, desc: "We map goals, systems and bottlenecks." },
-            { title: "Design", icon: FileText, desc: "We propose flows, screens, and ROI metrics." },
-            { title: "Build", icon: Cpu, desc: "We implement quickly with clean QA." },
-            { title: "Optimize", icon: Activity, desc: "We measure, iterate and scale." },
-          ].map((st, idx) => (
-            <div key={st.title} className="glass shadow-soft rounded-2xl p-6">
-              <div className="flex items-center justify-between">
-                <div className="grid size-10 place-items-center rounded-2xl bg-white/60 ring-1 ring-slate-200/70 dark:bg-slate-950/30 dark:ring-slate-800">
-                  <st.icon className="size-5 text-indigo-600 dark:text-indigo-300" />
+          <div className="mt-10 grid gap-5 lg:grid-cols-4">
+            {[
+              { title: "Understand", icon: Sparkles, desc: "We map goals, systems and bottlenecks." },
+              { title: "Design", icon: FileText, desc: "We propose flows, screens, and ROI metrics." },
+              { title: "Build", icon: Cpu, desc: "We implement quickly with clean QA." },
+              { title: "Optimize", icon: Activity, desc: "We measure, iterate and scale." },
+            ].map((st, idx) => (
+              <div key={st.title} className="glass shadow-soft rounded-2xl p-6">
+                <div className="flex items-center justify-between">
+                  <div className="grid size-10 place-items-center rounded-2xl bg-white/60 ring-1 ring-slate-200/70 dark:bg-slate-950/30 dark:ring-slate-800">
+                    <st.icon className="size-5 text-indigo-600 dark:text-indigo-300" />
+                  </div>
+                  <div className="text-xs font-semibold text-slate-400">0{idx + 1}</div>
                 </div>
-                <div className="text-xs font-semibold text-slate-400">0{idx + 1}</div>
+                <div className="mt-4 text-base font-semibold text-slate-900 dark:text-white">
+                  {st.title}
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                  {st.desc}
+                </p>
               </div>
-              <div className="mt-4 text-base font-semibold text-slate-900 dark:text-white">
-                {st.title}
-              </div>
-              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                {st.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Section>
+            ))}
+          </div>
+        </Section>
+      </div>
+
+      {/* DEMO VIDEOS intentionally hidden for now */}
 
       {/* RESULTS */}
       <Section className="pt-20">
         <SectionHeading
-          eyebrow="Results"
           title="Outcomes you can measure"
           subtitle="We focus on lead-to-close speed and operational efficiency."
         />
@@ -465,70 +449,17 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* TESTIMONIALS */}
+      {/* LOGOS */}
       <Section className="pt-20">
-        <SectionHeading
-          eyebrow="Proof"
-          title="Loved by teams that value speed"
-          subtitle="Result-based reviews that build trust."
-        />
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
-          {[
-            {
-              name: "Ankit Sharma",
-              company: "Agency Partner",
-              quote: "Increased our leads by 40% using automation. Response time dropped dramatically.",
-            },
-            {
-              name: "Dr. Meera Jain",
-              company: "Healthcare Clinic",
-              quote: "WhatsApp + follow-up system streamlined bookings and reduced no-shows.",
-            },
-            {
-              name: "Rohit Verma",
-              company: "Local Services",
-              quote: "The pipeline + reminders helped us close faster without extra staff.",
-            },
-          ].map((t) => (
-            <div key={t.name} className="glass shadow-soft rounded-2xl p-6 transition hover:-translate-y-1">
-              <div className="flex items-center gap-3">
-                <div className="grid size-11 place-items-center rounded-2xl bg-white/60 ring-1 ring-slate-200/70 dark:bg-slate-950/30 dark:ring-slate-800">
-                  <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">
-                    {t.name
-                      .split(" ")
-                      .map((x) => x[0])
-                      .slice(0, 2)
-                      .join("")}
-                  </span>
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-slate-900 dark:text-white">
-                    {t.name}
-                  </div>
-                  <div className="text-xs text-slate-500 dark:text-slate-300">
-                    {t.company}
-                  </div>
-                </div>
-              </div>
-              <div className="mt-4 flex items-center gap-1 text-amber-400">
-                {"★★★★★".split("").map((s, i) => (
-                  <span key={i} aria-hidden className="text-sm">
-                    {s}
-                  </span>
-                ))}
-              </div>
-              <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                “{t.quote}”
-              </p>
-            </div>
-          ))}
+        <SectionHeading title="Trusted by Business Owners from Various Industries" subtitle="" />
+        <div className="mt-8">
+          <LogoCloud items={demoLogos} />
         </div>
       </Section>
 
       {/* FAQ */}
       <Section className="pt-20">
         <SectionHeading
-          eyebrow="FAQ"
           title="Quick answers before you book"
           subtitle="Clear expectations = better delivery."
         />
