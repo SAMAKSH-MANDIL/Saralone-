@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 type ButtonVariant = "primary" | "secondary" | "ghost";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all outline-none focus-visible:ring-4 focus-visible:ring-[rgba(var(--ring),0.25)] active:translate-y-[1px]";
+  "inline-flex touch-manipulation select-none items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all outline-none focus-visible:ring-4 focus-visible:ring-[rgba(var(--ring),0.25)] active:translate-y-[1px]";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
@@ -24,15 +24,27 @@ export function Button({
   href,
   children,
   ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement> & {
+}: (React.ButtonHTMLAttributes<HTMLButtonElement> &
+  React.AnchorHTMLAttributes<HTMLAnchorElement>) & {
   variant?: ButtonVariant;
   href?: string;
 }) {
   const classes = cn(base, variants[variant], className);
 
   if (href) {
+    const isHashLink = href.startsWith("#");
+    const isExternalLink = /^https?:\/\//.test(href) || href.startsWith("mailto:") || href.startsWith("tel:");
+
+    if (isHashLink || isExternalLink) {
+      return (
+        <a href={href} className={classes} {...props}>
+          {children}
+        </a>
+      );
+    }
+
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} {...props}>
         {children}
       </Link>
     );

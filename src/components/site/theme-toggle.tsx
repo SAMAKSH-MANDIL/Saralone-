@@ -7,6 +7,28 @@ import { cn } from "@/lib/cn";
 
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <button
+        type="button"
+        disabled
+        className={cn(
+          "focus-ring grid size-10 place-items-center rounded-full ring-1 ring-slate-200/70 bg-white/70 backdrop-blur transition dark:bg-slate-900/50 dark:ring-slate-800",
+          className,
+        )}
+        aria-label="Toggle theme"
+      >
+        <Moon className="size-4" />
+      </button>
+    );
+  }
+
   const isDark = theme === "dark";
 
   return (

@@ -22,9 +22,52 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Saral One — AI Automation, Software & Growth Systems",
+  metadataBase: new URL("https://www.saralone.com"),
+  title: {
+    default: "Saral One — AI Automation, Software & Growth Systems",
+    template: "%s | Saral One",
+  },
   description:
     "Saral One helps businesses automate workflows, improve lead management, and build scalable digital systems.",
+  applicationName: "Saral One",
+  keywords: [
+    "AI automation",
+    "workflow automation",
+    "custom software development",
+    "SaaS development",
+    "lead generation systems",
+    "CRM automation",
+    "business automation",
+    "Saral One",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "Saral One",
+    title: "Saral One — AI Automation, Software & Growth Systems",
+    description:
+      "Saral One helps businesses automate workflows, improve lead management, and build scalable digital systems.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Saral One — AI Automation, Software & Growth Systems",
+    description:
+      "Saral One helps businesses automate workflows, improve lead management, and build scalable digital systems.",
+  },
 };
 
 export default function RootLayout({

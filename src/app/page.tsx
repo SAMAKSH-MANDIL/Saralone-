@@ -55,9 +55,9 @@ export default function Home() {
               with less manual work.
             </p>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="relative z-10 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button href="/contact" className="animate-shimmer relative overflow-hidden">
-                Book Free Consultation <ChevronRight className="size-4" />
+                Book Free Call <ChevronRight className="size-4" />
               </Button>
               <Button variant="secondary" href="#services">
                 Explore Services
