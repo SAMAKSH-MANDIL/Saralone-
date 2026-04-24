@@ -187,7 +187,7 @@ export default function Home() {
               badge: "from-indigo-500 to-violet-500",
               title: "Lead Generation System",
               desc: "Get consistent, high-quality leads from multiple channels",
-              imageSrc: "/Lead genration.png",
+              imageSrc: "/lead-generation.png",
               bullets: [
                 "Google (SEO & Business Profile optimization)",
                 "Meta Ads (Facebook & Instagram performance marketing)",
@@ -199,7 +199,7 @@ export default function Home() {
               badge: "from-emerald-500 to-teal-500",
               title: "Sales Automation System",
               desc: "Convert leads into customers automatically",
-              imageSrc: "/sales automation.png",
+              imageSrc: "/sales-automation.png",
               bullets: [
                 "WhatsApp & chatbot automation",
                 "CRM setup & pipeline management",
@@ -211,7 +211,7 @@ export default function Home() {
               badge: "from-blue-500 to-indigo-500",
               title: "Product & SaaS Development",
               desc: "Build scalable systems for long-term growth",
-              imageSrc: "/Product & SaaS.png",
+              imageSrc: "/product-saas.png",
               bullets: [
                 "Custom SaaS tools for your business",
                 "MVP development for startups",
@@ -223,7 +223,7 @@ export default function Home() {
               badge: "from-amber-500 to-orange-500",
               title: "Business Systems & Automation",
               desc: "Manage and scale your entire business with the right systems",
-              imageSrc: "/Business system.png",
+              imageSrc: "/business-system.png",
               bullets: [
                 "End-to-end system implementation",
                 "CRM, Finance, Operations & Automation setup",
