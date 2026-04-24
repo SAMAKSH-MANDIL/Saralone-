@@ -336,44 +336,39 @@ export default function Home() {
         </div>
 
         <div className="mx-auto mt-10 max-w-6xl overflow-hidden rounded-3xl bg-[#f5f1ff] p-4 sm:p-6">
-          <div className="flex w-[200%] items-stretch gap-4 animate-marquee [animation-duration:8s] sm:[animation-duration:26s]">
-            {[
-              { label: "Meta", logoSrc: "/meta.png" },
+          {(() => {
+            const tools = [
+              { label: "Meta", logoSrc: "/metaads.png" },
               { label: "Google My Business", logoSrc: "/googlemybusniess.png" },
-              { label: "Google", logoSrc: "/google.png" },
+              { label: "Google", logoSrc: "/googleads.png" },
               { label: "Zoho", logoSrc: "/zoho.png" },
               { label: "Outplay", logoSrc: "/outplay.png" },
               { label: "Odoo", logoSrc: "/odoo.png" },
               { label: "Kraya", logoSrc: "/kraya.png" },
               { label: "n8n", logoSrc: "/n8n.png" },
-            ]
-              .concat([
-                { label: "Meta", logoSrc: "/meta.png" },
-                { label: "Google My Business", logoSrc: "/googlemybusniess.png" },
-                { label: "Google", logoSrc: "/google.png" },
-                { label: "Zoho", logoSrc: "/zoho.png" },
-                { label: "Outplay", logoSrc: "/outplay.png" },
-                { label: "Odoo", logoSrc: "/odoo.png" },
-                { label: "Kraya", logoSrc: "/kraya.png" },
-                { label: "n8n", logoSrc: "/n8n.png" },
-              ])
-              .map((tool, idx) => (
-                <div
-                  key={`${tool.label}-${idx}`}
-                  className="flex h-[165px] w-[220px] shrink-0 flex-col items-center justify-center rounded-2xl bg-white px-4 py-6 shadow-[0_6px_20px_rgba(99,102,241,0.08)] ring-1 ring-[#e9e3ff]"
-                >
-                  <img
-                    src={tool.logoSrc}
-                    alt={`${tool.label} logo`}
-                    loading="lazy"
-                    className="h-14 w-auto max-w-[150px] object-contain"
-                  />
-                  <div className="mt-5 text-center text-2xl font-semibold leading-none tracking-tight text-[#201547]">
-                    {tool.label}
+            ];
+            const loop = [...tools, ...tools];
+            return (
+              <div className="flex w-max items-stretch gap-4 animate-tools-marquee will-change-transform">
+                {loop.map((tool, idx) => (
+                  <div
+                    key={`${tool.label}-${idx}`}
+                    className="flex h-[140px] w-[190px] shrink-0 flex-col items-center justify-center rounded-2xl bg-white px-4 py-5 shadow-[0_6px_20px_rgba(99,102,241,0.08)] ring-1 ring-[#e9e3ff] sm:h-[165px] sm:w-[220px] sm:py-6"
+                  >
+                    <img
+                      src={tool.logoSrc}
+                      alt={`${tool.label} logo`}
+                      loading="lazy"
+                      className="h-12 w-auto max-w-[140px] object-contain sm:h-14 sm:max-w-[150px]"
+                    />
+                    <div className="mt-4 text-center text-xl font-semibold leading-none tracking-tight text-[#201547] sm:mt-5 sm:text-2xl">
+                      {tool.label}
+                    </div>
                   </div>
-                </div>
-              ))}
-          </div>
+                ))}
+              </div>
+            );
+          })()}
         </div>
       </Section>
 
