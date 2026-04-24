@@ -38,6 +38,10 @@ export function Navbar() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
+  React.useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
     <header className="sticky top-0 z-50">
       <div
