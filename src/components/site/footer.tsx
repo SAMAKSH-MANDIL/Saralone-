@@ -118,7 +118,19 @@ export function Footer() {
         <div className="mt-10 flex flex-col gap-2 border-t border-slate-200/70 pt-6 text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <div>© {new Date().getFullYear()} Saral One. All rights reserved.</div>
           <div className="flex items-center gap-4">
-            
+            <Link
+              href="/privacy-policy"
+              className="focus-ring rounded-lg hover:text-slate-900 dark:hover:text-white transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <span className="text-slate-300 dark:text-slate-700" aria-hidden="true">·</span>
+            <Link
+              href="/terms-and-conditions"
+              className="focus-ring rounded-lg hover:text-slate-900 dark:hover:text-white transition-colors"
+            >
+              Terms &amp; Conditions
+            </Link>
           </div>
         </div>
       </div>
