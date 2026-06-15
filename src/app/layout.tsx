@@ -69,6 +69,9 @@ export const metadata: Metadata = {
     description:
       "Saral One helps businesses automate workflows, improve lead management, and build scalable digital systems.",
   },
+  verification: {
+    google: "Q1kmsi8t_xp648GFFw-M5TvTviSIpQ80M3LZm_xsXLc",
+  },
 };
 
 export default function RootLayout({
