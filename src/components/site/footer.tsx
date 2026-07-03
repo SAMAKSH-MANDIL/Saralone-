@@ -92,6 +92,7 @@ export function Footer() {
 
           <div className="lg:col-span-4">
             <div className="text-sm font-semibold">Contact</div>
+            <div className="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">SARAL GOC PVT. LTD.</div>
             <ul className="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
               <li className="flex items-start gap-2">
                 <Mail className="mt-0.5 size-4 shrink-0" />

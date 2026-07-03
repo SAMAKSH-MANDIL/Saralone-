@@ -15,9 +15,12 @@ import {
   UserCheck2,
   Users,
   Workflow,
+  MapPin,
+  Mic,
 } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { HeroSlider } from "@/components/site/hero-slider";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Accordion } from "@/components/ui/accordion";
 import { LogoCloud } from "@/components/site/logo-cloud";
@@ -83,79 +86,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Mock dashboard */}
+          {/* Image Slider */}
           <div className="relative hidden lg:block">
             <div className="gradient-border">
               <div className="glass shadow-soft relative overflow-hidden rounded-[var(--radius-lg)] p-5">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="size-2 rounded-full bg-rose-400/80" />
-                    <div className="size-2 rounded-full bg-amber-400/80" />
-                    <div className="size-2 rounded-full bg-emerald-400/80" />
-                  </div>
-                  <div className="text-xs font-semibold text-slate-500 dark:text-slate-300">
-                    Saral One Console
-                  </div>
-                </div>
-
-                <div className="mt-5 grid gap-4 lg:grid-cols-2">
-                  <div className="glass rounded-2xl p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="text-xs font-semibold text-slate-500 dark:text-slate-300">
-                        Lead pipeline
-                      </div>
-                      <div className="text-xs font-semibold text-emerald-600 dark:text-emerald-300">
-                        +38%
-                      </div>
-                    </div>
-                    <div className="mt-3 space-y-2">
-                      {[
-                        ["New leads", "124"],
-                        ["Qualified", "67"],
-                        ["Booked calls", "22"],
-                      ].map(([k, v]) => (
-                        <div key={k} className="flex items-center justify-between rounded-xl bg-white/60 px-3 py-2 dark:bg-slate-950/30">
-                          <div className="text-xs text-slate-600 dark:text-slate-300">{k}</div>
-                          <div className="text-xs font-semibold text-slate-900 dark:text-white">{v}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="glass rounded-2xl p-4">
-                    <div className="text-xs font-semibold text-slate-500 dark:text-slate-300">
-                      Automations running
-                    </div>
-                    <div className="mt-3 flex items-end justify-between">
-                      <div>
-                        <div className="text-3xl font-semibold text-slate-900 dark:text-white">
-                          14
-                        </div>
-                        <div className="mt-1 text-xs text-slate-600 dark:text-slate-300">
-                          SLA: 99.9%
-                        </div>
-                      </div>
-                      <div className="animate-floaty grid place-items-center rounded-2xl bg-gradient-to-r from-sky-500/20 via-indigo-500/20 to-purple-500/20 p-3 ring-1 ring-slate-200/70 dark:ring-slate-800">
-                        <Workflow className="size-6 text-indigo-600 dark:text-indigo-300" />
-                      </div>
-                    </div>
-                    <div className="mt-4 h-24 rounded-2xl bg-[linear-gradient(120deg,rgba(14,165,233,0.18),rgba(99,102,241,0.22),rgba(168,85,247,0.18))] ring-1 ring-slate-200/70 dark:ring-slate-800" />
-                  </div>
-                </div>
-
-                <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                  {[
-                    { icon: Bot, label: "AI follow-ups" },
-                    { icon: Cpu, label: "Custom software" },
-                    { icon: ChartNoAxesCombined, label: "Growth dashboards" },
-                  ].map((c) => (
-                    <div key={c.label} className="glass rounded-2xl px-3 py-3">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-200">
-                        <c.icon className="size-4 text-indigo-600 dark:text-indigo-300" />
-                        {c.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <HeroSlider />
               </div>
             </div>
 
@@ -324,6 +259,94 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* PROJECTS */}
+      <Section className="pt-14" id="projects">
+        <div className="text-center">
+          <h2 className="font-[var(--font-display)] text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
+            Our Projects
+          </h2>
+          <p className="mx-auto mt-4 max-w-4xl text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">
+            Discover some of the innovative solutions we have built.
+          </p>
+        </div>
+
+        <div className="mx-auto mt-10 grid max-w-5xl gap-6 sm:grid-cols-2">
+          {/* Mapzo */}
+          <div className="group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-white/80 p-8 shadow-soft ring-1 ring-slate-200/80 transition-all hover:-translate-y-1 hover:shadow-xl dark:bg-slate-900/60 dark:ring-slate-800">
+            <div className="absolute -right-10 -top-10 size-40 rounded-full bg-indigo-500/10 blur-3xl transition-all group-hover:bg-indigo-500/20" />
+            <div>
+              <div className="mb-5 flex items-center gap-4">
+                <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 dark:bg-indigo-500/10">
+                  <MapPin className="size-7 text-indigo-600 dark:text-indigo-400" />
+                </div>
+                <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Mapzo AI</h3>
+              </div>
+              <div className="mb-4 inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700 ring-1 ring-inset ring-indigo-600/20 dark:bg-indigo-500/10 dark:text-indigo-300 dark:ring-indigo-500/20">
+                AI-Powered Local SEO & Reputation Management
+              </div>
+              <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                Automate Google reviews, improve Google Business Profile visibility, and grow local rankings with AI.
+              </p>
+              
+              <div className="mt-6 border-t border-slate-200/70 pt-6 dark:border-slate-800">
+                <ul className="space-y-3">
+                  {["AI Review Management", "Google Profile Optimization", "Smart Business Website", "Analytics"].map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-3 text-sm font-medium text-slate-700 dark:text-slate-300">
+                      <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-indigo-50 dark:bg-indigo-500/10">
+                        <CheckCircle2 className="size-3.5 text-indigo-600 dark:text-indigo-400" />
+                      </div>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="mt-8">
+              <Button href="https://mapzoai.com" target="_blank" rel="noopener noreferrer" className="relative w-full overflow-hidden transition-all group-hover:shadow-[0_0_20px_rgba(79,70,229,0.3)]">
+                Sign Up Now <ChevronRight className="size-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* AI Voice Calling Agent */}
+          <div className="group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-white/80 p-8 shadow-soft ring-1 ring-slate-200/80 transition-all hover:-translate-y-1 hover:shadow-xl dark:bg-slate-900/60 dark:ring-slate-800">
+            <div className="absolute -right-10 -top-10 size-40 rounded-full bg-emerald-500/10 blur-3xl transition-all group-hover:bg-emerald-500/20" />
+            <div>
+              <div className="mb-5 flex items-center gap-4">
+                <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 dark:bg-emerald-500/10">
+                  <Mic className="size-7 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">AI Voice Calling Agent</h3>
+              </div>
+              <div className="mb-4 inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-600/20 dark:bg-emerald-500/10 dark:text-emerald-300 dark:ring-emerald-500/20">
+                Human-Like AI Calling for Sales & Support
+              </div>
+              <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                Automate outbound calls, qualify leads, book appointments, and update data directly in your CRM or sheet.
+              </p>
+
+              <div className="mt-6 border-t border-slate-200/70 pt-6 dark:border-slate-800">
+                <ul className="space-y-3">
+                  {["AI Outbound Calling", "Lead Qualification", "Appointment Booking", "CRM/Sheet Integration"].map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-3 text-sm font-medium text-slate-700 dark:text-slate-300">
+                      <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-50 dark:bg-emerald-500/10">
+                        <CheckCircle2 className="size-3.5 text-emerald-600 dark:text-emerald-400" />
+                      </div>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="mt-8">
+              <Button href="http://voice.saralone.com/" target="_blank" rel="noopener noreferrer" className="relative w-full overflow-hidden transition-all group-hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                Sign Up Now <ChevronRight className="size-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Section>
+
       {/* TOOLS */}
       <Section className="pt-14">
         <div className="text-center">
@@ -447,8 +470,66 @@ export default function Home() {
       {/* LOGOS */}
       <Section className="pt-20">
         <SectionHeading title="Trusted by Business Owners from Various Industries" subtitle="" />
-        <div className="mt-8">
-          <LogoCloud items={demoLogos} />
+        <div className="mt-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4">
+          <div className="flex w-max items-center gap-14 animate-marquee will-change-transform hover:[animation-play-state:paused]">
+            {[...demoLogos, ...demoLogos, ...demoLogos, ...demoLogos].map((l, i) => (
+              <div 
+                key={i} 
+                className="flex h-14 shrink-0 items-center justify-center opacity-90 transition-all hover:opacity-100 dark:h-20 dark:w-48 dark:rounded-2xl dark:bg-white/95 dark:p-3 dark:shadow-soft"
+              >
+                {l.logoSrc ? (
+                  <Image
+                    src={l.logoSrc}
+                    alt={l.name}
+                    width={180}
+                    height={70}
+                    className="h-full w-auto object-contain"
+                  />
+                ) : (
+                  <div className="flex items-center gap-3">
+                    <div className="grid size-12 place-items-center rounded-full bg-white/80 text-sm font-semibold text-slate-700 ring-1 ring-slate-200/80 dark:bg-slate-100 dark:text-slate-800 dark:ring-slate-200">
+                      {l.initials}
+                    </div>
+                    <div className="whitespace-nowrap text-sm font-semibold text-slate-700 dark:text-slate-900">
+                      {l.name}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* TRUSTED PARTNERS */}
+      <Section className="pt-20">
+        <SectionHeading title="Trusted Partners" subtitle="" />
+        <div className="mx-auto mt-10 grid max-w-5xl grid-cols-2 items-center justify-items-center gap-6 sm:grid-cols-3 md:grid-cols-5">
+          {[
+            "/paas.png",
+            "/Digital-india-black-removebg-preview.png",
+            "/mp-startup.png",
+            "/merit-logo.png",
+            "/msme-1.png",
+            "/OIP (3).png",
+            "/OIP (4).png",
+            "/OIP (6).png",
+            "/OIP (7).png",
+            "/klic.png",
+          ].map((src, i) => (
+            <div
+              key={i}
+              className="relative flex h-32 w-full items-center justify-center transition-all hover:-translate-y-1 dark:bg-white/95 dark:rounded-2xl dark:shadow-soft"
+            >
+              <Image
+                src={src}
+                alt={`Trusted Partner ${i + 1}`}
+                fill
+                className="object-contain p-4"
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+              />
+            </div>
+          ))}
         </div>
       </Section>
 

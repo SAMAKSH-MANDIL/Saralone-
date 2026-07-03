@@ -13,6 +13,7 @@ import { ThemeToggle } from "@/components/site/theme-toggle";
 const nav = [
   { href: "/", label: "Home" },
   { href: "/solutions", label: "Solutions" },
+  { href: "/#projects", label: "Projects" },
   { href: "/about", label: "About" },
   { href: "/careers", label: "Careers" },
 ];
@@ -67,6 +68,14 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={(e) => {
+                    if (item.href.startsWith("/#") && pathname === "/") {
+                      e.preventDefault();
+                      const id = item.href.split("#")[1];
+                      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                      window.history.pushState(null, "", item.href);
+                    }
+                  }}
                   className={cn(
                     "focus-ring rounded-full px-4 py-2 text-sm font-medium transition",
                     active
@@ -142,7 +151,17 @@ export function Navbar() {
                       <Link
                         key={item.href}
                         href={item.href}
-                        onClick={() => setOpen(false)}
+                        onClick={(e) => {
+                          setOpen(false);
+                          if (item.href.startsWith("/#") && pathname === "/") {
+                            e.preventDefault();
+                            const id = item.href.split("#")[1];
+                            setTimeout(() => {
+                              document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                            }, 150);
+                            window.history.pushState(null, "", item.href);
+                          }
+                        }}
                         className={cn(
                           "focus-ring flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold transition",
                           active
